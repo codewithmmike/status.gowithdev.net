@@ -15,7 +15,6 @@
 * * * git clone https://github.com/codewithmmike/status.gowithdev.net.git 
 * * Set permission for storage folder by command line: 
 * * * chmod -R 775 storage 
-* * * chown -R nginx:nginx storage
 * * Run composer install & composer update by command line: 
 * * * composer install && composer update 
 * * Run migration database by command line: 
