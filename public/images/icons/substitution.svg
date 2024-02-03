@@ -1,0 +1,8 @@
+<svg version="1.1"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 14 14" fill="red" name="FootballSubOut">
+    <path fill="#df2357" d="M14 7A7 7 0 110 7a7 7 0 0114 0z"></path>
+    <path fill="#0b0b0b"
+        d="M9 3.5V7h1.44a.25.25 0 01.19.42l-3.26 3.66a.5.5 0 01-.74 0L3.37 7.42A.25.25 0 013.56 7H5V3.5c0-.28.22-.5.5-.5h3c.28 0 .5.22.5.5z">
+    </path>
+</svg>
