@@ -1,12 +1,12 @@
 ## Step by step setup the project in server 
 
 * Required
-* * Ubuntu ver >= 22.04
-* * php ver >= 8.1
-* * nginx ver >= 1.18.0
-* * mariadb ver >= 10.6.16
-* * composer ver >= 2.6.6
-* * git ver >= 2.34.1
+- 🔐 Ubuntu ver >= 22.04
+- 🚀 php ver >= 8.1
+- 🔑 nginx ver >= 1.18.0
+- ✅ mariadb ver >= 10.6.16
+- 🧑 composer ver >= 2.6.6
+- 👑 git ver >= 2.34.1
 
 * Step by step deployment in server
 * * Login to Mariadb database with user root and create a database by command line: 
