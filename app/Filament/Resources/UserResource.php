@@ -19,6 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
@@ -32,6 +33,7 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
+                Select::make('role')->options(User::ROLES)->required(),
                 TextInput::make('password')->required()->password()->confirmed(),
                 TextInput::make('password_confirmation')->required()->password(),
             ]);
@@ -43,6 +45,7 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('email')->searchable(),
+                TextColumn::make('role')->searchable(),
             ])
             ->filters([
                 //

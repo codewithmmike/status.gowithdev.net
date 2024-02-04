@@ -14,7 +14,13 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements FilamentUser, JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    const ROLE_ADMIN = 'ADMIN';
+    const ROLE_USER = 'USER';
+    const ROLES = [
+        self:: ROLE_ADMIN => 'Admin',
+        self:: ROLE_USER  => 'User',
+    ];
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +30,7 @@ class User extends Authenticatable implements FilamentUser, JWTSubject
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**

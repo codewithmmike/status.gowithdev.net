@@ -4,18 +4,16 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Repositories\Domain\DomainRepository;
+use Illuminate\Http\Request;
 
 class EmailNotificationBody extends Component
 {
     public $listdomain;
-    /**
-     * @param DomainRepository $domainRepository
-     */
-    public function __construct(
-        public DomainRepository $domainRepository
-    )
+    public $user;
+    public function mount(DomainRepository $domainRepository, Request $request)
     {
-        $listdomain = $this->domainRepository->all();
+        $this->listdomain = $domainRepository->all()->where('status', 'DIE');
+        $this->user = $request->user();
     }
 
     public function render()

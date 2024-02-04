@@ -63,6 +63,7 @@ class DomainResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+        return $table;
     }
 
     public static function getRelations(): array

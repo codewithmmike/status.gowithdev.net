@@ -11,7 +11,6 @@ use Inertia\Response;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 use App\Filament\Resources\UserResource\Pages;
-use Filament\Filament;
 
 class DomainController extends Controller
 {

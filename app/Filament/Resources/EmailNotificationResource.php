@@ -18,15 +18,25 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Navigation\NavigationItem;
 
 class EmailNotificationResource extends Resource
 {
     protected static ?string $model = EmailNotification::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
+    //protected static bool $shouldRegisterNavigation = false;
+    public function __construct()
+    {
+        
+
+    }
+
 
     public static function form(Form $form): Form
     {
+        $this->$shouldRegisterNavigation = true;
+        var_dump(auth()); die();
         return $form
             ->schema([
                 TextInput::make('email')->required(),

@@ -23,5 +23,6 @@ class ListDomains extends ListRecords
                 }),
             Actions\CreateAction::make(),
         ];
+ 
     }
 }
