@@ -11,5 +11,8 @@ class Domain extends BaseModel
         'description',
         'user_id'
     ];
+
 }
+
+
 

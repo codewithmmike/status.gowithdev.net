@@ -25,13 +25,6 @@ class EmailNotificationResource extends Resource
     protected static ?string $model = EmailNotification::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    //protected static bool $shouldRegisterNavigation = false;
-    public function __construct()
-    {
-        
-
-    }
-
 
     public static function form(Form $form): Form
     {
@@ -78,5 +71,10 @@ class EmailNotificationResource extends Resource
             'create' => Pages\CreateEmailNotification::route('/create'),
             'edit' => Pages\EditEmailNotification::route('/{record}/edit'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->check() && auth()->user()->role == 'ADMIN';
     }
 }

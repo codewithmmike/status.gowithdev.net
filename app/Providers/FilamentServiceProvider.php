@@ -25,7 +25,6 @@ class FilamentServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //var_export(auth()); die();
-        NavigationItem::make('Domains')->hidden(true);
+        //
     }
 }

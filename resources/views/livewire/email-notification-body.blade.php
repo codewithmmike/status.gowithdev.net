@@ -1,8 +1,6 @@
-
 <div>
-    <h3>Dear Mr ...</h3>
-    <p>This is the domains list was die</p>
-    
+    <h3>Dear Mr/Mrs {{ $user->name }}</h3>
+    <h4>Notice: this is the domains list was die. Please check</h4>
     <table id="domain" class="table table-success table-striped">
         <thead>
             <tr>
@@ -19,11 +17,6 @@
                     <td>{{ $domain->description }}</td>
                 </tr>
             @endforeach
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
         </tbody>
     </table>
 </div>
