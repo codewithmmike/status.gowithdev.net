@@ -35,8 +35,6 @@ class EmailNotificationResource extends Resource
 
     public static function form(Form $form): Form
     {
-        $this->$shouldRegisterNavigation = true;
-        var_dump(auth()); die();
         return $form
             ->schema([
                 TextInput::make('email')->required(),
