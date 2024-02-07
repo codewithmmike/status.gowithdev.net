@@ -40,22 +40,29 @@ class DomainController extends Controller
     {
         $listdomain = $this->domainRepository->all();
         foreach ($listdomain as $key => $value){
-            $ch = curl_init($value->name);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_exec($ch);
-            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
-            if ($httpCode == 200) {
-                // Trạng thái 200 OK - Update status Domain là LIVE
-                $this->domainRepository->update([
-                    'status' => 'LIVE'
-                ], $value->id);
-            } else {
-                // Trạng thái không phải 200 - Update status Domain là DIE
-                $this->domainRepository->update([
-                    'status' => 'DIE'
-                ], $value->id);
-            }          
+            if ($value->deleted_at == null) {
+                $ch = curl_init($value->name);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_exec($ch);
+                $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                $has3w = (strpos(curl_getinfo($ch, CURLINFO_REDIRECT_URL), 'www.') !== false) ? 'Support WWW': 'Not support WWW';
+                curl_close($ch);
+                if (in_array($httpCode, [0, 500, 404])) {
+                    // Trạng thái 500 - Update status Domain là DIE
+                    $this->domainRepository->update([
+                        'status' => 'DIE',
+                        'http_code' => $httpCode,
+                        'http_message' => $has3w,
+                    ], $value->id);
+                } else {
+                    // Trạng thái không phải 500 - Update status Domain là LIVE
+                    $this->domainRepository->update([
+                        'status' => 'LIVE',
+                        'http_code' => $httpCode,
+                        'http_message' => $has3w,
+                    ], $value->id);
+                } 
+            }         
         }
     }
 

@@ -70,7 +70,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('sync:rounds --index-from=490')
             ->daily()->at('4:40')->sendOutputTo($roundPath);
 
-    }
+        // Sync scan status domain every 5 minutes
+        $scanStatusPath = storage_path('logs/scan-status.log');
+        $schedule->command('sync:scan-status-domain --date-to=' . $today)
+            ->everyThirtySeconds()->sendOutputTo($scanStatusPath);
+    } 
 
     /**
      * Register the commands for the application.

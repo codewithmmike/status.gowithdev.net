@@ -14,12 +14,12 @@ class ListEmailNotifications extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\Action::make('Send emails')
+            Actions\Action::make('Send Emails')
             ->color('success')
             ->action(function(EmailNotificationController $emailNotificationController) {
                 $emailNotificationController->sendEmail();
             }),
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('New Email Notification'),
         ];
     }
 }

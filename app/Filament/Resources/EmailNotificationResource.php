@@ -30,7 +30,13 @@ class EmailNotificationResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('email')->required(),
+                TextInput::make('email')
+                ->required()
+                ->unique(ignoreRecord: true)
+                ->regex('/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/')
+                ->validationMessages([
+                    'regex' => 'Please input valid format: abc@.xyz.xml',
+                ]),
                 TextInput::make('status'),
                 TextInput::make('description'),
             ]);
@@ -49,6 +55,7 @@ class EmailNotificationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -75,6 +82,6 @@ class EmailNotificationResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->check() && auth()->user()->role == 'ADMIN';
+        return (auth()->check() && auth()->user()->hasRole('admin')) || auth()->user()->email =='code@gowithdev.com';
     }
 }

@@ -10,17 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    const ROLE_ADMIN = 'ADMIN';
-    const ROLE_USER = 'USER';
-    const ROLES = [
-        self:: ROLE_ADMIN => 'Admin',
-        self:: ROLE_USER  => 'User',
-    ];
-    
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+
     /**
      * The attributes that are mass assignable.
      *

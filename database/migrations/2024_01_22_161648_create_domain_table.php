@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('name')->default('');
             $table->string('type')->nullable();
             $table->string('status')->nullable();
+            $table->string('http_code')->default('')->nullable();
+            $table->string('http_message')->default('')->nullable();
             $table->string('user_id')->nullable();
             $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

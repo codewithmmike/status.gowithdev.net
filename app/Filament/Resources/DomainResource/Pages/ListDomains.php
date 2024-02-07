@@ -16,12 +16,12 @@ class ListDomains extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\Action::make('Scan status')
+            Actions\Action::make('Scan Status')
                 ->color('success')
                 ->action(function(DomainController $domainController) {
                     $domainController->checkStatus();
                 }),
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('New Domain'),
         ];
  
     }

@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\PermissionResource\Pages;
+use App\Models\Permission;
 use Filament\Forms;
-use Filament\Forms\Components\Field;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -20,25 +18,24 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Card;
 
-class UserResource extends Resource
+class PermissionResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Permission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-eye-dropper';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('email')->required()->email(),
-                Select::make('roles')
-                    ->multiple()
-                    ->relationship('roles', 'name')
-                    ->preload()
-                    ->required(),
-                TextInput::make('password')->required()->password(),
+                Card::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->unique(ignoreRecord: true)
+                            ->required(),
+                    ])
             ]);
     }
 
@@ -46,8 +43,8 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->searchable(),
                 TextColumn::make('name')->searchable(),
-                TextColumn::make('email')->searchable(),
             ])
             ->filters([
                 //
@@ -73,9 +70,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListPermissions::route('/'),
+            'create' => Pages\CreatePermission::route('/create'),
+            'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
     }
 
